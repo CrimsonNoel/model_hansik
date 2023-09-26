@@ -1,0 +1,80 @@
+    {#레이아웃#}
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>{% block title%} Django project{% endblock %}</title>
+    </head>
+    <body>
+    <div class="w3-bar w3-light-grey">
+        <a href="/member/index" class="w3-bar-item w3-button w3-green">KIC Campus</a>
+        {# 제어문,명령문 #}  {# 주석 #} {# {{ }} 괄호 두개가 jstl이라 보면된다 #}
+    
+   {% if request.session.id  %}
+    <a href="/member/info/{{request.session.id}}/" class="w3-bar-item w3-button w3-hide-small">
+    회원정보확인[{{request.session.id}}]</a>
+    <a href="/member/logout/" class="w3-bar-item w3-button w3-hide-small">로그아웃</a>
+    {% else %}
+    
+      <a href="/member/join" class="w3-bar-item w3-button w3-hide-small">회원가입</a>
+       <a href="/member/login" class="w3-bar-item w3-button w3-hide-small">로그인</a>
+       
+    {% endif %}
+    
+    {% if request.session.id == 'admin' %}
+    
+    <a href="/member/list/" class="w3-bar-item w3-button w3-hide-small">회원리스트</a>
+    
+    {% endif %}
+    
+    
+      <div class="w3-dropdown-hover">
+        <button class="w3-button">
+          게시판 <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-white w3-card-4">
+          <a href="/board/list?boardid=1" class="w3-bar-item w3-button w3-text-black">공지사항</a>
+          <a href="/board/list?boardid=2" class="w3-bar-item w3-button w3-text-black">자유게시판</a>
+          <a href="/board/list?boardid=3" class="w3-bar-item w3-button w3-text-black">QnA</a>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
+    </div>
+    
+    {% block content %} {% endblock %}
+    {#content 위치#}
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

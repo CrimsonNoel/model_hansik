@@ -1,0 +1,31 @@
+{% extends "head.html" %}{#한줄주석#}
+{% block content %}
+<!DOCTYPE html><html>
+<head><meta charset="UTF-8">
+<title>Insert title here</title>
+</head><body><br>
+<div class="w3-container">
+<table class="w3-table-all">
+<caption>회원정보확인[{{request.session.id}}]</caption>
+<tr><td>아이디</td><td>{{mem.id}}  </td></tr>
+<tr><td>이름</td><td>{{mem.name}} </td></tr>
+<tr><td>성별</td><td>{% if mem.gender == 1 %} 남
+                    {% else %} 여 {% endif %}
+
+
+  </td></tr>
+<tr><td>전화번호</td><td>{{mem.tel}} </td></tr>
+<tr><td>이메일</td><td>{{mem.email}} </td></tr>
+<tr>
+		<td colspan="2" class="w3-center">
+		<a class="w3-button w3-black" 
+		href="/member/update/{{request.session.id}}/">회원정보수정</a>
+		<a class="w3-button w3-black" 
+		href="/member/delete/{{request.session.id}}/">회원탈퇴</a>
+		<a class="w3-button w3-black" 
+		href="/member/passchg/">비밀번호수정</a>
+		</td>
+			</tr>
+</table></div>
+</body></html>
+{% endblock %}

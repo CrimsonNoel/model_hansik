@@ -1,0 +1,67 @@
+{% extends "head.html" %}{#한줄주석#}
+{% block content %}
+{% load_board_tags %} {# filter setting #}
+<!DOCTYPE html><html><head> 
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head><body>
+<div class="w3-container">
+<h3  class="w3-center">게시판리스트</h3>
+<a class="w3-button   w3-right  w3-grey"   
+    href="/board/write/" >게시판 입력[{{listcount}}]</a>
+<table class="w3-table-all" style="color:#000">
+ <tbody> <tr>
+  <th>번호</th>
+  <th>이름</th>
+  <th>제목</th>
+   <th>파일</th>
+   <th>입력일</th>
+  <th>조회수</th> </tr>
+
+    {% for b in board %}
+  <tr>
+   <td>{{b.num}}</td>
+  <td>{{b.name}}</td>
+  <td><a  href="/board/comment/{{b.num}}/">{{b.subject}}</a></td>
+  <td>{{b.file1}}</td>
+  <td>{{b.regdate}}</td>
+  <td>{{b.readcnt}}</td>
+   </tr>
+  {% endfor%}
+  </tbody>
+
+
+</table> 
+<br>
+
+<div class="w3-bar w3-center w3-small">
+ <div class="pagination">
+ {% if pageNum  >  pageview %}
+ <a class="w3-button" href="/board/list?pageNum=1">[맨 앞으로]</a>
+ <a class="w3-button" href="/board/list?pageNum={{board.previous_page_number}}/" class="w3-button">[이전]</a>
+{% else %} {# 앞 페이지가 없을때 #}
+ <a href="#"  class="w3-button w3-disabled">[이전]</a>
+{% endif %} 
+ <div style="width:30%; margin: 5px; display:inline;"
+ {% for page in board.paginator.page_range %}
+      {% if page >= pagestart and page <=  pageend %}  {# if 안먹힘 #}
+ <span class="w3-button {% if page == board.number %} w3-red {% endif %}">
+ <a href = "?pageNum={{page}}">{{page}}</a></span>
+      {% endif %}
+ {% endfor %}
+ </div>
+ {% if pageend <  maxpage %}
+  <a href="/board/list?pageNum="
+  <a href="/board/list?pageNum={{board.next_page_number}}" class="w3-button ">[다음]</a>
+ {% endif %}
+   <a href="#"  class="w3-button  w3-disabled">[다음]</a>
+</div>
+</div>
+
+
+
+
+
+</div>
+</body></html>
+{% endblock %}
