@@ -1,0 +1,40 @@
+body {
+        background-image: url('/static/image/brbrsum.png');
+        background-size:cover;
+}
+.container1{
+    width: 1200px;
+    height: 800px;
+    margin: 25px auto;
+}
+.t {
+    width: 800px;
+    margin: auto;
+    padding: 10px;
+    background-color: aliceblue;
+}
+.mhover:hover{
+    background-color: darkorange;
+}
+
+aside{
+    width: 200px;
+}
+#guide>img{
+    padding: 5px;
+    width: 500px;
+    height: 100%;
+}
+a>img {
+    width: 150px;
+    height: 150px;
+}
+.upup{
+    margin-bottom: 100px;
+    padding: 0; 
+}
+.bear>div>img{
+    width: 450px;
+    margin: 150px 0;
+    margin-left: -100px;
+}

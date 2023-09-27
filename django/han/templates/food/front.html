@@ -1,64 +1,46 @@
 {% extends "head.html" %}{#한줄주석#}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style/food.css' %}">
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <title>hansik</title>
-    <style>
-        body {
-                background-image: url('brbrsum.png');
-        }
-        .container1{
-            width: 1200px;
-            height: 800px;
-            margin: 25px auto;
-        }
-        .t {
-            width: 800px;
-            margin: auto;
-            padding: 10px;
-            background-color: aliceblue;
-        }
-        .mhover:hover{
-            background-color: darkorange;
-        }
-
-        aside{
-            width: 200px;
-        }
-        div>a>img{
-            padding: 5px;
-            width: 500px;
-            height: 100%;
-        }
-        a>img {
-            width: 150px;
-            height: 150px;
-        }
-        .upup{
-            margin-bottom: 100px;
-            padding: 0; 
-        }
-        .bear>div>img{
-            width: 450px;
-            margin: 150px 0;
-            margin-left: -100px;
-        }
-    </style>
     <script>
         // 이미지 업로드시 함수 실행
         function loadFile(input) {
-        var file = input.files[0];	//선택된 파일 가져오기
+        var guide = document.getElementById('guide')
+        var file = input.files[0];	
 
         //이미지 source 가져오기
-        newImage.src = URL.createObjectURL(file);   
-        
-        //업로드 완료 확인필요? +
-        //업로드 이후 작업필요 !
+        var newImage = document.createElement("img"); 
+        newImage.src = URL.createObjectURL(file);
+   
+        // 이미지 속성 설정
+        newImage.width = 500;
+        newImage.height = 100;
+    
+        // 이미지를 원하는 위치에 추가
+        guide.removeChild(guide.firstChild);
+        guide.appendChild(newImage);
         };
-
+    
+        
+        // 이게아니라 버튼누르면 추가되는거 알아내야지;;
+        /*window.addEventListener('DOMContentLoaded', function() {
+        var img = document.createElement("img");
+        img.src = "{% static 'image/brbrsum.png' %}";
+        img.width = 500;
+        img.height = 100;
+        var No1 = document.getElementById('no1');
+        var guide = document.getElementById('guide');
+    
+        No1.appendChild(img);
+        guide.appendChild(img);
+        });*/
+        
     </script>
 </head>
 
@@ -76,7 +58,7 @@
         <div class="text-center" >
             <div>
                 <div>가이드</div>
-                <a href=""><img src="11111.jpg" alt=""></a>
+                <a id="guide"><img src="{% static 'image/11111.jpg' %}" alt=""></a>
             </div>
         </div>
     </div>
@@ -90,17 +72,17 @@
                 </tr>
                 <tr>
                     <td>1순위<br>
-                        <a href=""><img src="11111.jpg" alt=""></a>
+                        <a id="no1"><img src="" alt=""></a>
                     </td>
                 </tr>
                 <tr>
                     <td>2순위<br>
-                        <a href=""><img src="11111.jpg" alt=""></a>
+                        <a  id="no2"><img src="" alt=""></a>
                     </td>
                 </tr>
                 <tr>
                     <td>3순위<br>
-                        <a href=""><img src="11111.jpg" alt=""></a>
+                        <a  id="no3"><img src="" alt=""></a>
                     </td>
                 </tr>
             </table>
@@ -109,7 +91,7 @@
     <!-- 캐릭터 -->
     <div class="bear position-absolute" >
         <div>
-            <img src="123.png" alt="">
+            <img src="{% static 'image/123.png' %}" alt="">
         </div>
     </div>
 
@@ -120,7 +102,7 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="button">
-                <label  class="mhover fs-3 fw-bold" for="chooseFile">
+                <label  class="mhover fs-3 fw0-bold" for="chooseFile">
                     👉 여기를 눌러서 사진 올리기! 👈
                 </label>
             </div>
