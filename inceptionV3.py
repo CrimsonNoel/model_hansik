@@ -84,10 +84,12 @@ inception_model = tf.keras.applications.InceptionV3(
 
 # 사용자 정의 출력 레이어 추가
 output_layer = tf.keras.layers.GlobalAveragePooling2D()(inception_model.output)
-output_layer = tf.keras.layers.Dense(num_classes, activation='softmax')(output_layer) # 원-핫 인코딩
+output_layer = tf.keras.layers.Dense(num_classes, activation='softmax', kernel_regularizer=l2(0.01))(output_layer) # L2 정규화 추가
+# output_layer = tf.keras.layers.Dense(num_classes, activation='softmax')(output_layer) # 원-핫 인코딩
 
 # 모델 정의
 model = tf.keras.Model(inputs=inception_model.input, outputs=output_layer)
+
 
 # 모델 컴파일
 model.compile(optimizer='adam',
@@ -99,30 +101,26 @@ model.compile(optimizer='adam',
 inception_model.summary()
 
 # 모델 학습
-epochs=20
+epochs=30
 history = model.fit(
     train_ds,
     epochs=epochs,
     validation_data=val_ds,
-    callbacks=[early_stopping]  # 조기 종료 콜백
+    #callbacks=[early_stopping]  # 조기 종료 콜백
 )
 
 
 model.save("C:/Users/KITCOOP/kicpython/hansik",overwrite=True)
 
 # 모델 불러오기
-from tensorflow.keras.models import load_model
-# InceptionV3 모델을 로드합니다.
-loaded_model = tf.keras.models.load_model("C:/Users/KITCOOP/kicpython/hansik/models")
-loaded_model.summary()
-
-# ----  inception 모델 로드
 import tensorflow as tf
+from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.inception_v3 import preprocess_input, decode_predictions
 from tensorflow.keras.models import load_model
 
 loaded_model = tf.keras.models.load_model("C:/Users/KITCOOP/kicpython/hansik/models/2")
+loaded_model.summary()
 loaded_model
 # 모델의 가중치 가져오기
 weights = loaded_model.get_weights()
@@ -132,7 +130,6 @@ for i, layer_weights in enumerate(weights):
 
 # 추후 새로운 폴더 만들어서 검증할 부분    
 X=[]
-categories = ['001']
 categories = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '026', '027', '028', '029', '030', '031', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '044', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083']
 categories_index = ['갈치구이','고등어구이', '더덕구이', '장어구이', '조개구이', '조기구이', '황태구이', '훈제오리', '계란국', '떡국_만두국',
  '무국', '미역국', '북엇국', '시래기국', '육개장', '콩나물국', '콩자반', '갓김치', '깍두기', '무생채', '배추김치', '백김치',
@@ -231,7 +228,6 @@ print(
     "이미지는  {} with a {:.2f} percent 확신합니다."
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
-
 
 
 #########################

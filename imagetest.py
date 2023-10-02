@@ -94,7 +94,7 @@ os.remove(df[0][1])
 from PIL import Image
 import os
 # 존재하는 폴더
-categories = ['000', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '026', '027', '028', '029', '030', '031', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '044', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083', '084', '085', '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', '097', '098', '099', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113', '114', '115', '116', '117', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127', '128', '129', '130', '131', '132', '133', '134', '135', '136', '137', '138', '139', '140', '141', '142', '143', '144', '145', '146', '147', '148', '149']
+categories = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', '026', '027', '028', '029', '030', '031', '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', '043', '044', '045', '046', '047', '048', '049', '050', '051', '052', '053', '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', '075', '076', '077', '078', '079', '080', '081', '082', '083']
 # 폴더내 확장자 추출
 directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"
 H = []
@@ -106,81 +106,121 @@ for category in categories:
             H.append(file_extension)
 df = pd.DataFrame(H)    
 df.drop_duplicates()    
+exten = ['.png','PNG','gif','GIF','jpeg','JPEG','jpg','JPG']
 
+
+#######이미지 수동으로 전처리
+# 훈련 이미지 수정하기 
 def modify_and_save_image(cate,cnt):
-    
+    exten = ['.jpg','.JPG','.png','.PNG','.gif','.GIF','.jpeg','.JPEG']
     # 파일 경로 설정
     input_directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"
-    if cnt < 999:
-        file_name_in = "Img_"+cate+"_0" + str(cnt)+ ".jpg"
-    else:
-        file_name_in = "Img_"+cate+"_" + str(cnt)+ ".jpg"
     # 추출해낸 확장자 선택지에 넣기
-    input_file_path = os.path.join(input_directory, file_name_in)
     
     # 이미지 파일 열기
-    img = Image.open(input_file_path)
-    if img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".JPG"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".jpeg"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".JPEG"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".bmp"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".BMP"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".png"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".PNG"
-    elif img == None : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".gif"
-    else : input_file_path = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+cate+"/"+"Img_"+cate+"_0" + str(cnt)+ ".GIF"
+    for ex in exten:
+       try:
+          file_name_in = num + ex
+          input_file_path = os.path.join(input_directory, file_name_in)
+          img = Image.open(input_file_path)
+          break
+       except FileNotFoundError:
+          print('이미지파일이 없습니다')
+          
     
     print(input_file_path)
     # 이미지를 RGB 색상 모드로 변환
     img = img.convert("RGB")
     # 이미지 수정 
-    new_width, new_height = 180, 180
+    new_width, new_height = 50, 50
     img = img.resize((new_width, new_height))
     # 수정된 이미지를 새 파일로 저장
-    output_directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning_rgb/"+cate+"/"
-    if cnt < 999:
-        file_name_out = "Img_"+cate+"_0" + str(cnt) + ".jpg"
-    else:
-        file_name_out = "Img_"+cate+"_" + str(cnt) + ".jpg"
+    output_directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning_rgb5/"+cate+"/"
+    file_name_out = cnt + ".jpg"
     output_file_path = os.path.join(output_directory, file_name_out)
     img.save(output_file_path)
     
     # 이미지 수정 및 저장
-data_dir = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/{cate}/")
-data_dir_test = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/test/{cate}/")
+data_dir = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/")
+data_dir_test = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/test/")
 
-image_count = len(list(data_dir.glob('*.jpg')))
-image_test_count = len(list(data_dir_test.glob('*.jpg')))
-image_count
-image_test_count
-categories=['147','148','149']
 #변형
 for category in categories:
     print("category : ",category)
     data_dir = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning/"+category+"/")
-    os.makedirs("C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning_rgb/"+category+"/", exist_ok=True)
-    image_files = list(data_dir.glob('*.[jJpPgG][pPnNbB]*'))
-    image_count = len(image_files)
+    os.makedirs("C:/Users/KITCOOP/kicpython/hansik/kfood_new/learning_rgb5/"+category+"/", exist_ok=True)
+    # 파일 경로에서 파일 이름을 추출
+    file_name = os.path.basename(data_dir)
+    last_file_name = os.listdir(data_dir)[-1]
+    file_number = last_file_name.split('.')[0]
+    image_count = int(file_number)
     print("dic_image 갯수: ",image_count)
-    cnt=100
+    cnt=1
     for _ in range(image_count):
         try:
-            modify_and_save_image(category,cnt)
+            if cnt <10 : num = "00"+str(cnt)
+            elif cnt >=10 and cnt < 100 : num = "0"+str(cnt)
+            else : num = str(cnt)
+            modify_and_save_image(category,num)
             cnt += 1    
         except:
             print("이미지 파일이 없습니다","category : ",category,"_",cnt)
             cnt += 1
     print("완료된 image 수 : ",cnt)
-
-
-
-
-
-
-
 ############
+#test 이미지 수정하기
+def modify_and_save_image_test(cate,cnt):
+    exten = ['.jpg','.JPG','.png','.PNG','.gif','.GIF','.jpeg','.JPEG']
+    # 파일 경로 설정
+    input_directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/test/"+cate+"/"
+    # 추출해낸 확장자 선택지에 넣기
+    
+    # 이미지 파일 열기
+    for ex in exten:
+       try:
+          file_name_in = num + ex
+          input_file_path = os.path.join(input_directory, file_name_in)
+          img = Image.open(input_file_path)
+          break
+       except FileNotFoundError:
+          print('이미지파일이 없습니다')
+    
+    print(input_file_path)
+    # 이미지를 RGB 색상 모드로 변환
+    img = img.convert("RGB")
+    # 이미지 수정 
+    new_width, new_height = 50, 50
+    img = img.resize((new_width, new_height))
+    # 수정된 이미지를 새 파일로 저장
+    output_directory = "C:/Users/KITCOOP/kicpython/hansik/kfood_new/test_rgb5/"+cate+"/"
+    file_name_out = cnt + ".jpg"
+    output_file_path = os.path.join(output_directory, file_name_out)
+    img.save(output_file_path)
+    
 
-
+#변형
+for category in categories:
+    print("category : ",category)
+    data_dir = pathlib.Path("C:/Users/KITCOOP/kicpython/hansik/kfood_new/test/"+category+"/")
+    os.makedirs("C:/Users/KITCOOP/kicpython/hansik/kfood_new/test_rgb5/"+category+"/", exist_ok=True)
+    # 파일 경로에서 파일 이름을 추출
+    file_name = os.path.basename(data_dir)
+    last_file_name = os.listdir(data_dir)[-1]
+    file_number = last_file_name.split('.')[0]
+    image_count = int(file_number)
+    print("dic_image 갯수: ",image_count)
+    cnt=1
+    for _ in range(image_count):
+        try:
+            if cnt <10 : num = "00"+str(cnt)
+            elif cnt >=10 and cnt < 100 : num = "0"+str(cnt)
+            else : num = str(cnt)
+            modify_and_save_image(category,num)
+            cnt += 1    
+        except:
+            print("이미지 파일이 없습니다","category : ",category,"_",cnt)
+            cnt += 1
+    print("완료된 image 수 : ",cnt)
 
 
 
