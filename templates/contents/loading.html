@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang=ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+    font-family: 'TTWanjudaedunsancheB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/TTWanjudaedunsancheB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+        .image {
+            
+            position: absolute;
+            object-fit: cover;
+        
+            
+        }
+        
+        
+        body {
+          margin: 0; 
+          display: flex;            /*내부 요소들이 차례로 배치 */
+          justify-content: center;  /*내부 요소의 좌우 정렬 상태를 가운데로 설정*/
+          align-items: center;      /*요소는 세로 중앙 배치*/
+          height: 100vh;            /*웹 크기 변화에 따라 변경되는 반응형 수치*/
+          background-color: #f3c117;
+        }
+    .text {
+      z-index: 2;
+      margin-left: 10px;
+      margin-top: 320px;
+      color: black;
+      font-size: 30px;
+      font-weight: 900;
+      font-family: 'TTWanjudaedunsancheB';
+      
+    }
+
+    .loading span{
+        margin-top: 320px;
+        margin-left: 5px;
+        display: inline-block; /* span 내부요소들을 한줄로 세우기 */
+        width: 30px;
+        height: 30px;
+        background-color: gray;
+        border-radius: 50%;    /* span을 동그랗게 */
+        animation: loading 1s 0s linear infinite;
+        /* 이벤트명  반복시간  딜레이시간  이벤트처리부드럽게  이벤트무한반복*/
+      }
+      
+      .loading span:nth-child(1) {  /*loading의 자식 중 첫번째 span*/
+        /*nth-child : 형제 사이에서의 순서*/
+        animation-delay: 0s;
+        background-color: red;
+      }
+      
+      .loading span:nth-child(2) {
+        animation-delay: 0.2s;
+        background-color: orange;
+      }
+      
+      .loading span:nth-child(3) {
+        animation-delay: 0.4s;
+        background-color: yellowgreen;
+      }
+    @keyframes loading {        /*loading이라는 keyframe 애니메이션*/
+        0%,                      /* 0, 50, 100은 구간*/
+        100% {
+          opacity: 0;            /* 안보였다가 */
+          transform: scale(0.5); /*transform의 scale로 요소를 확대 또는 축소할 수 있음*/   
+        }
+        50% {
+          opacity: 1;             /* 보였다가 */
+          transform: scale(1.2); /* 1.2배 */
+        }
+      }
+    </style>
+</head>
+
+<body>
+    <div class="image">
+        <img src="{% static 'img/loading/loading_dark.gif'%}" 
+        loop=infinite >
+    </div>
+    <div class="text">
+      음식을 찾고있어요!<br>
+      잠시만 기다려주세요
+    </div>
+    <div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+</body>
+</html>

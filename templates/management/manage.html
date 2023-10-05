@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+        <style>
+            div {
+                 border: 1px solid #000;
+            }  
+            li{
+                list-style-type: none;
+            }
+            .Kategorie{
+                text-align: center;
+                margin-top: 100px;
+            }
+        </style>
+</head>
+    
+    <body>
+      <header>
+        <div class="navbar" id="navbar" >
+         <div class="">
+          <a href="/management/logout">로그아웃</a>
+          <span>{{ manager.name }} 님</span>
+         </div>
+         <a id="logo" href="">관리자페이지</a>
+          <div class="">
+            <a href="">전체:000개</a>
+            <a href="">미처리:000개</a>
+          </div>
+        </div>
+  
+        <div class="menubar" id="menubar">
+          <ul>
+            <!-- 카테고리 리스트 -->
+            <li class="h4 text-center m-3 px-3">
+              <a href="best.html">최신순</a>
+              <a href="shop.html">종류별</a>
+
+            </li>
+          </ul>
+        </div>
+
+      </header>
+             
+       <!-- 제품 이미지 -->
+            <div class="goods" >
+             <!-- 체크박스 전체 여부 -->
+                <div style="border: black; float: right;"><input type="checkbox" id="chkAll" name="chkAll" /> 전체선택</div><br>
+
+                <ul class="d-flex justify-content-center" >
+              
+
+                    <li class="p-2 mt-5">
+                        <div class="card" style="width: 18rem;" >
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="p-2 mt-5">
+                        <div class="card" style="width: 18rem;" >
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="p-2 mt-5">
+                        <div class="card" style="width: 18rem;">
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="d-flex justify-content-center" class="d-grid gap-3">
+                    <li class="p-2  mt-5">
+                        <div class="card" style="width: 18rem;">
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="p-2  mt-5">
+                        <div class="card" style="width: 18rem;">
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="p-2  mt-5">
+                        <div class="card" style="width: 18rem;">
+                          <input type="checkbox" name="chk" value="${c.ser}"/>
+                            <img src="/images/shop/향수.webp" class="card-img-top" alt="...">
+                            <div class="card-body container text-center">
+                              <h5 class="card-title">음식이름</h5>
+                              <p class="card-text">피드백</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                            </ul>
+                            <div class="card-body container text-center">
+                              <a href="#" class="card-link"><img src="/images/shop/하트.png" alt="" width="30px"></a>
+                              <a href="#" class="card-link"><img src="/images/shop/장바구니.png" alt="" width="30px"></a>
+                            </div>
+                        </div>
+                    </li>                   
+                </ul>        
+            </div>
+
+            <!--페이지 넘버-->
+            <nav aria-label="Page navigation example">
+              <ul class="d-flex justify-content-center" >
+                <li>
+                  <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >1</a
+                  >
+                </li>
+                <li aria-current="page">
+                  <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >2</a>
+                </li>
+                <li>
+                  <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    >3</a>
+                </li>
+                <li>
+                  <a
+                    class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                    href="#"
+                    aria-label="Next"
+                    ><span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>      
+
+
+
+          <!--SNS 이미지 태그?-->
+      
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>        
+        <script>
+          $(document).ready(function() {
+            $("#chkAll").click(function() {
+              if ($("#chkAll").is(":checked"))
+                $("input[name=chk]").prop("checked", true);
+              else
+                $("input[name=chk]").prop("checked", false);
+            });
+          });
+
+    
+        </script>
+      </body>
+</html>
