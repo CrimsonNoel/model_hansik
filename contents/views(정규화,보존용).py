@@ -10,8 +10,6 @@ import os
 from .models import Food, Feedback
 import numpy as np
 
-# model 8  fine tuning시 정규화 안한부분이 보여 데이터 리사이징 convert만하고 진행하는게 정확도 높게나옴
-
 def process_image(input_image):
     img = Image.open(input_image)
     img = img.convert("RGB")
@@ -23,9 +21,9 @@ def predict_image(last_file_name):
     food_model = load_food_model()
     input_file_path = os.path.join(settings.MEDIA_ROOT, last_file_name)
     img = tf.keras.utils.load_img(input_file_path)
-    type(img)
+    print("==type: ",type(img))
     img_array = tf.keras.utils.img_to_array(img)
-    img_array = tf.keras.applications.inception_v3.preprocess_input(img_array)
+    #img_array = tf.keras.applications.inception_v3.preprocess_input(img_array) # 이작업이 정규화작업이랑 같은맥락 255로 나누면 두번하는셈
     image_shape = img_array.shape
     #img_array = img_array / 255.0
     print("img_array: ",img_array)
@@ -64,12 +62,12 @@ def start(request):
             print('이미지가 업로드되지 않았습니다.')
             return render(request, 'alert.html', context)
         else:
-            uploaded_file_image = process_image(uploaded_file) # PIL로 바뀌고 저장안되니 날것 이미지로 날것이 정확도 좋음
             fs = FileSystemStorage()
             filename = uploaded_file.name.split('.')[0]+'.jpg'
-            #file_save = fs.save(filename, uploaded_file)
-            input_file_path = os.path.join(settings.MEDIA_ROOT, filename)
-            uploaded_file_image.save(input_file_path)
+            file_save = fs.save(filename, uploaded_file)
+            #uploaded_file_image = process_image(uploaded_file)
+            #input_file_path = os.path.join(settings.MEDIA_ROOT, filename)
+            #uploaded_file_image.save(input_file_path)
             return HttpResponseRedirect("/contents/loading/")
     
     return render(request, 'contents/start.html')
@@ -103,9 +101,20 @@ def loading(request):
     category= predict_image(last_file_name)
     print(category)
     context = {"category": category}
+    
     return render(request, 'contents/result.html', context)
 
 def result(request):
+    
+# =============================================================================
+#     # 피드백 아니요시 파일 삭제할부분 
+#     try:
+#         os.remove(input_file_path)
+#         print("삭제")
+#     except:
+#         print("안돼")
+#         pass
+# =============================================================================
     return render(request, 'contents/result.html')
 
 def wrong(request):

@@ -8,26 +8,15 @@
         <!-- 화살표 아이콘 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-body {
-    background-color: #FAFAFA;
-}
-
-.header {
-    background-color: white;
-}
+        
 .jb-wrap {
 	position: relative;
 }
 .jb-text {
 	position: absolute;
     top: 20%;
-	left: 80%;
+	left: 85%;
 	transform: translate( -50%, -50% );
-}
-.jb-text p {
-    font-size: 25px;
-    position: absolute;
-    transform: translate( -8%, -10%);
 }
 
 .food{
@@ -71,15 +60,14 @@ body {
     <body>
     
         <!-- Header-->
-        <header class="py-5 header">
+        <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder text-black">어떤 음식일까요?</h1>
-                    <p class="lead fw-normal text-black-50 mb-0"></p>
+                    <h1 class="display-4 fw-bolder">Project title</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">결과페이지입니다.</p>
                 </div>
             </div>
         </header>
-        
         
         <!-- Section-->
         <section class="py-5">
@@ -87,25 +75,27 @@ body {
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-evenly">
                     
                     <!-- 유저가 업로드한 이미지 -->
-                    <div>
-                        <img src={% static 'img/result/11111.png'%} style="width: 80%;" alt="">
-                    </div>
                     <div class="col mb-5">
                         <div class="card">
-                            <img class="card-img-top" src="/static/img/food/{{ foodimage }}" alt="..." />
+                            <img class="card-img-top" src="https://dummyimage.com/500x500/dee2e6/6c757d.jpg" alt="..." />
                         </div>
                     </div>
-                    <div class="jb-wrap d-flex">
-                        <div class="jb-image">
-                            <img src="{% static 'img/result/child_megaphone_08.jpg'%}" style="width: 150%;" alt="..."  />
-                        </div>
-                        <div class="jb-text" style="width: 100%;">
-                            <p>이 음식은 {{food.efficacy}} </p>
+
+                    <div class="col mb-5 d-flex justify-content-center align-items-center">
+                        <!-- 화살표 -->
+                        <i class="bi bi-arrow-right" style="font-size: 10rem; color: cornflowerblue;"></i>
+                    </div>
+
+                    <!-- 데이터셋에서 출력된 이미지 -->
+                    <div class="col mb-5">
+                        <div class="card">
+                            <img class="card-img-top" src="https://dummyimage.com/500x500/dee2e6/6c757d.jpg" alt="..." />
                         </div>
                     </div>
+ 
                 </div>
             </div>
-        </section>
+
             <!-- 이 음식은 ___입니다. -->
             <!-- <section class="py-5">
                 <div class='arrow_box text-center container p-2'>
@@ -114,19 +104,42 @@ body {
             </section> -->
             <section class="py-5">
             <div class="food container text-center p-5">
-                <h4>이 음식은 {{food.name}} 입니다 !</h4>
+                <h4>이 음식은 {{category}} 입니다 !</h4>
             </div></section>
+
+            <section class="py-5">
+            </section>
+
+            <!-- 캐릭터추가하고 음식효능 설명-->
+
+            <div class="d-flex justify-content-center">
+            <div>
+                <img src={% static 'img/result/11111.png'%} style="width: 80%;" alt="">
+            </div>
+            <div class="jb-wrap d-flex">
+                <div class="jb-image">
+                    <img src="{% static 'img/result/child_megaphone_08.jpg'%}" style="width: 150%;" alt="..."  />
+                </div>
+                <div class="jb-text" style="width: 100%;">
+                    <p>이 음식은,,, 눈 건강에 좋아요!</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+        </section>
 
         <!-- 음식유래 -->
 
         <div class="d-flex justify-content-center">
             <div class="card text-center" style="width: 50%;">
                 <div class="card-body">
-                    <h5 class="card-title">이 음식에 대해 더 자세히 알아볼까요?</h5>
+                    <h5 class="card-title">이 음식이 어떻게 만들어졌는지 알아볼까요?</h5>
                 </div>
 
                 <div class="card-body">
-                    <a href="{{food.origin}}" target="_blank"><img src="{% static 'img/result/click-here_culture-removebg-preview (2).png' %}" alt="" style="width: 30%;"></a>
+                    <a href="http://www.naver.com"><img src="{% static 'img/result/click-here_culture-removebg-preview (2).png' %}" alt="" style="width: 30%;"></a>
                 </div>
             </div>
         </div>
@@ -138,10 +151,9 @@ body {
         <div class="row">
         <div class="p-4 pt-0 border-top-0 bg-transparent ">
             <div class="text-center col">
-            <hr>
-                <p>결과물이 올바르게 나왔나요?</p>
-                <a class="btn btn-outline-primary " href="#">예</a>
-                <a class="btn btn-outline-danger" href="#">아니오</a>
+                <a class="btn btn-outline-dark " href="#">결과물이 올바르게 나왔나요?</a>
+                <a class="btn btn-outline-dark " href="#">예</a>
+                <a class="btn btn-outline-dark " href="#">아니오</a>
             </div>
         </div>
         </div>
@@ -151,6 +163,7 @@ body {
             <div class="container"><p class="m-0 text-center text-white"> PROJECT </p></div>
         </footer>
     </body>
+
 
 
 </html>
